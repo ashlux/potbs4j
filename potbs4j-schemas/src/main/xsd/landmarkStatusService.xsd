@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+  <xs:element name="PortList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="updated" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="Port" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Port">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="resources" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="e" type="resource" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="name" type="portName" use="required"/>
+      <xs:attribute name="currOwner" type="nation" use="required"/>
+      <xs:attribute name="defaultOwner" type="nation" use="required"/>
+      <xs:attribute name="level" type="xs:int" use="required"/>
+      <xs:attribute name="xPosition" type="xs:double" use="required"/>
+      <xs:attribute name="zPosition" type="xs:double" use="required"/>
+      <xs:attribute name="conquerable" type="conquerable" use="required"/>
+      <xs:attribute name="portState" type="xs:string" use="required"/>
+      <xs:attribute name="piratePvPRange" type="xs:double" use="required"/>
+      <xs:attribute name="fullPvPRange" type="xs:int" use="required"/>
+      <xs:attribute name="englandUnrestPoints" type="xs:int" use="required"/>
+      <xs:attribute name="spainUnrestPoints" type="xs:int" use="required"/>
+      <xs:attribute name="pirateUnrestPoints" type="xs:int" use="required"/>
+      <xs:attribute name="franceUnrestPoints" type="xs:int" use="required"/>
+      <xs:attribute name="englandConquestPoints" type="xs:int" use="required"/>
+      <xs:attribute name="spainConquestPoints" type="xs:int" use="required"/>
+      <xs:attribute name="pirateConquestPoints" type="xs:int" use="required"/>
+      <xs:attribute name="franceConquestPoints" type="xs:int" use="required"/>
+      <xs:attribute name="englandConquerCount" type="xs:int" use="required"/>
+      <xs:attribute name="spainConquerCount" type="xs:int" use="required"/>
+      <xs:attribute name="pirateConquerCount" type="xs:int" use="required"/>
+      <xs:attribute name="franceConquerCount" type="xs:int" use="required"/>
+      <xs:attribute name="area" type="area" use="optional"/>
+      <xs:attribute name="timeOfLastUnrestChange" type="xs:string" use="optional"/>
+      <xs:attribute name="protectionStateEndTime" type="xs:string" use="optional"/>
+      <xs:attribute name="battleStartDate" type="xs:string" use="optional"/>
+      <xs:attribute name="timeOfLastBattle" type="xs:string" use="optional"/>
+      <xs:attribute name="attackerBattlePoints" type="xs:int" use="optional"/>
+      <xs:attribute name="ownerBattleConquest" type="xs:int" use="optional"/>
+      <xs:attribute name="unrestStateEndTime" type="xs:string" use="optional"/>
+      <xs:attribute name="attacker" type="nation" use="optional"/>
+      <xs:attribute name="defender" type="nation" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:simpleType name="resource">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NEWPLAYER_AUCTION"/>
+      <xs:enumeration value="PUBLIC_DOCK"/>
+      <xs:enumeration value="ORE_COPPER"/>
+      <xs:enumeration value="ORE_GOLD"/>
+      <xs:enumeration value="ORE_SILVER"/>
+      <xs:enumeration value="HARBOR"/>
+      <xs:enumeration value="GUANO_CAVES"/>
+      <xs:enumeration value="STONE_GRANITE"/>
+      <xs:enumeration value="ZINC"/>
+      <xs:enumeration value="GAME"/>
+      <xs:enumeration value="HARBOR_DEEP"/>
+      <xs:enumeration value="WOOD_FIR"/>
+      <xs:enumeration value="REGIONAL_MARKET"/>
+      <xs:enumeration value="ORE_IRON"/>
+      <xs:enumeration value="FERTILE_SOIL_CACTUS"/>
+      <xs:enumeration value="ORE_SULFUR"/>
+      <xs:enumeration value="WOOD_TEAK"/>
+      <xs:enumeration value="WOOD_OAK"/>
+      <xs:enumeration value="FERTILE_SOIL_GRAPES"/>
+      <xs:enumeration value="WOOD_IRONWOOD"/>
+      <xs:enumeration value="RIVER"/>
+      <xs:enumeration value="FERTILE_SOIL"/>
+      <xs:enumeration value="STONE_MARBLE"/>
+      <xs:enumeration value="FERTILE_SOIL_SUGAR"/>
+      <xs:enumeration value="STONE_LIMESTONE"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="nation">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ENGLAND"/>
+      <xs:enumeration value="SPAIN"/>
+      <xs:enumeration value="PIRATE"/>
+      <xs:enumeration value="FRANCE"/>
+      <xs:enumeration value="DUTCH"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="conquerable">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="True"/>
+      <xs:enumeration value="False"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="area">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="area_all_high"/>
+      <xs:enumeration value="area_br_mid"/>
+      <xs:enumeration value="area_br_noob"/>
+      <xs:enumeration value="area_fr_mid"/>
+      <xs:enumeration value="area_fr_noob"/>
+      <xs:enumeration value="area_pi_mid"/>
+      <xs:enumeration value="area_pi_noob"/>
+      <xs:enumeration value="area_sp_mid"/>
+      <xs:enumeration value="area_sp_noob"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="portName">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Ambrgs"/>
+      <xs:enumeration value="BelIsl"/>
+      <xs:enumeration value="Belize"/>
+      <xs:enumeration value="Biloxi"/>
+      <xs:enumeration value="Blufld"/>
+      <xs:enumeration value="Brdgtn"/>
+      <xs:enumeration value="Brilla"/>
+      <xs:enumeration value="Brtica"/>
+      <xs:enumeration value="Bsstrr"/>
+      <xs:enumeration value="CatIsl"/>
+      <xs:enumeration value="Cayenn"/>
+      <xs:enumeration value="CbRphl"/>
+      <xs:enumeration value="ChrlTn"/>
+      <xs:enumeration value="Chrlft"/>
+      <xs:enumeration value="Cmpche"/>
+      <xs:enumeration value="CpDVla"/>
+      <xs:enumeration value="Cracas"/>
+      <xs:enumeration value="Crbnrs"/>
+      <xs:enumeration value="CrlHrb"/>
+      <xs:enumeration value="Crtgna"/>
+      <xs:enumeration value="CyDMrq"/>
+      <xs:enumeration value="DLisle"/>
+      <xs:enumeration value="FtCrln"/>
+      <xs:enumeration value="FtDeFr"/>
+      <xs:enumeration value="Ganica"/>
+      <xs:enumeration value="Gibara"/>
+      <xs:enumeration value="GoldLk"/>
+      <xs:enumeration value="Grgetn"/>
+      <xs:enumeration value="Grnvil"/>
+      <xs:enumeration value="Havana"/>
+      <xs:enumeration value="HrbIsl"/>
+      <xs:enumeration value="Iguana"/>
+      <xs:enumeration value="IrshPt"/>
+      <xs:enumeration value="IslHrb"/>
+      <xs:enumeration value="JcbClk"/>
+      <xs:enumeration value="JenBay"/>
+      <xs:enumeration value="Jqueme"/>
+      <xs:enumeration value="LaIsbl"/>
+      <xs:enumeration value="Leogan"/>
+      <xs:enumeration value="LesHts"/>
+      <xs:enumeration value="MaHrbr"/>
+      <xs:enumeration value="Marcbo"/>
+      <xs:enumeration value="MattTn"/>
+      <xs:enumeration value="MrgnBf"/>
+      <xs:enumeration value="Nassau"/>
+      <xs:enumeration value="NavigationZone"/>
+      <xs:enumeration value="NwOrln"/>
+      <xs:enumeration value="Orlens"/>
+      <xs:enumeration value="Ornjsd"/>
+      <xs:enumeration value="Pnscla"/>
+      <xs:enumeration value="PntAPt"/>
+      <xs:enumeration value="PrtRyl"/>
+      <xs:enumeration value="PtDePx"/>
+      <xs:enumeration value="PtPrnc"/>
+      <xs:enumeration value="PtStJo"/>
+      <xs:enumeration value="PtaDeP"/>
+      <xs:enumeration value="PtoCbz"/>
+      <xs:enumeration value="Ptoblo"/>
+      <xs:enumeration value="PtofSp"/>
+      <xs:enumeration value="RDLHch"/>
+      <xs:enumeration value="RdgRok"/>
+      <xs:enumeration value="RdyCov"/>
+      <xs:enumeration value="Roseau"/>
+      <xs:enumeration value="Rsgnol"/>
+      <xs:enumeration value="Sbnqui"/>
+      <xs:enumeration value="Sisal"/>
+      <xs:enumeration value="SnCat"/>
+      <xs:enumeration value="SnJuan"/>
+      <xs:enumeration value="SnMrcs"/>
+      <xs:enumeration value="SntClr"/>
+      <xs:enumeration value="SntDmg"/>
+      <xs:enumeration value="Sntago"/>
+      <xs:enumeration value="SpanTn"/>
+      <xs:enumeration value="StAgst"/>
+      <xs:enumeration value="StJhns"/>
+      <xs:enumeration value="StRsBay"/>
+      <xs:enumeration value="Tampa"/>
+      <xs:enumeration value="Tmpico"/>
+      <xs:enumeration value="Tortga"/>
+      <xs:enumeration value="Trndad"/>
+      <xs:enumeration value="Trptud"/>
+      <xs:enumeration value="TrtBay"/>
+      <xs:enumeration value="ViuxFt"/>
+      <xs:enumeration value="VlaHrm"/>
+      <xs:enumeration value="VraCrz"/>
+      <xs:enumeration value="Whitby"/>
+      <xs:enumeration value="WstEnd"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

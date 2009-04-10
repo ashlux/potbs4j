@@ -16,6 +16,7 @@ import java.util.List;
 public class AbstractPotbsService
 {
     private String apiKey;
+
     private String userId;
 
     public AbstractPotbsService( String apiKey, String userId )
@@ -24,7 +25,14 @@ public class AbstractPotbsService
         this.userId = userId;
     }
 
-    protected XmlObject parse( InputStream inputStream )
+    protected XmlObject executeService( final String url )
+        throws PotbsServiceException
+    {
+        InputStream inputStream = doPost( url );
+        return parse( inputStream );
+    }
+
+    private XmlObject parse( InputStream inputStream )
         throws PotbsServiceException
     {
         String xml = null;
@@ -35,31 +43,26 @@ public class AbstractPotbsService
         }
         catch ( XmlException e )
         {
-            throw new PotbsServiceException( "Could not parse xml=[" + xml + "].", e);
+            throw new PotbsServiceException( "Could not parse xml=[" + xml + "].", e );
         }
         catch ( IOException e )
         {
-            throw new PotbsServiceException( "Could not read stream from post.", e);
+            throw new PotbsServiceException( "Could not read stream from post.", e );
         }
 
     }
 
-    protected InputStream doPost( final String url )
-        throws PotbsServiceException
-    {
-        return doPost( url, new LinkedList<NameValuePair>() );
-    }
-
-    protected InputStream doPost( final String url, final List<NameValuePair> data )
+    private InputStream doPost( final String url )
         throws PotbsServiceException
     {
         try
         {
-            HttpClient httpClient = new HttpClient( );
+            HttpClient httpClient = new HttpClient();
+            List<NameValuePair> data = new LinkedList<NameValuePair>();
             data.add( new NameValuePair( "apikey", this.apiKey ) );
             data.add( new NameValuePair( "userid", this.userId ) );
             PostMethod postMethod = new PostMethod( url );
-            postMethod.setRequestBody( data.toArray( new NameValuePair[data.size()] ));
+            postMethod.setRequestBody( data.toArray( new NameValuePair[data.size()] ) );
             httpClient.executeMethod( postMethod );
             return postMethod.getResponseBodyAsStream();
         }

@@ -1,11 +1,10 @@
-package com.ashlux.potbs.potbs4j.services.serverstatus;
+package com.ashlux.potbs.potbs4j.services.server;
 
 import com.ashlux.potbs.potbs4j.exception.PotbsServiceException;
 import com.ashlux.potbs.potbs4j.services.AbstractPotbsService;
 import com.ashlux.potbs4j.vo.ServerDocument;
 import com.ashlux.potbs4j.vo.ServerListDocument;
-
-import java.io.InputStream;
+import com.ashlux.potbs4j.vo.ServerName;
 
 public class ServerStatusServiceImpl
     extends AbstractPotbsService
@@ -16,21 +15,19 @@ public class ServerStatusServiceImpl
     public ServerStatusServiceImpl( String apiKey, String userId )
     {
         super( apiKey, userId );
-    }                                           
+    }
 
     @Override
-    public ServerListDocument getAllServersStatus()
+    public ServerListDocument getAllServerStatuses()
         throws PotbsServiceException
     {
-        InputStream inputStream = doPost( SERVER_STATUS_URL );
-        return (ServerListDocument) parse( inputStream );
+        return (ServerListDocument) executeService( SERVER_STATUS_URL );
     }
        
     @Override
-    public ServerDocument getServerStatus( String server )
+    public ServerDocument getServerStatus( ServerName.Enum serverName )
         throws PotbsServiceException
     {
-        InputStream inputStream = doPost( SERVER_STATUS_URL + "/" + server );
-        return (ServerDocument) parse( inputStream );
+        return (ServerDocument) executeService( SERVER_STATUS_URL + "/" + serverName );
     }
 }

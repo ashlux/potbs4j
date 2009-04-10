@@ -12,7 +12,7 @@
 
   <xs:element name="server">
     <xs:complexType>
-      <xs:attribute name="name" type="xs:string" use="required"/>
+      <xs:attribute name="name" type="serverName" use="required"/>
       <xs:attribute name="status" type="serverStatus" use="required"/>
       <xs:attribute name="version" type="xs:string" use="required"/>
       <xs:attribute name="ENGLAND" type="Population" use="optional"/>
@@ -36,6 +36,18 @@
       <xs:enumeration value="1"/>
       <xs:enumeration value="2"/>
       <xs:enumeration value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="serverName">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="antigua"/>
+      <xs:enumeration value="blackbeard"/>
+      <xs:enumeration value="rackham"/>
+      <xs:enumeration value="roberts"/>
+      <xs:enumeration value="testbed"/>
+      <xs:enumeration value="defiant"/>
+      <xs:enumeration value="caribbean"/>
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
