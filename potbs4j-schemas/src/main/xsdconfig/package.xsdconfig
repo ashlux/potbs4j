@@ -1,0 +1,8 @@
+<xb:config xmlns:xb="http://xml.apache.org/xmlbeans/2004/02/xbean/config">
+
+  <!-- Map xsds without a namespace to this package instead of the noNamespace package. -->
+  <xb:namespace uriprefix="">
+    <xb:package>com.ashlux.potbs4j.vo</xb:package>
+  </xb:namespace>
+
+</xb:config>
