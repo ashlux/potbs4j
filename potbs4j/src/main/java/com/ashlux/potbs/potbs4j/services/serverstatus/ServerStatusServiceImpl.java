@@ -16,7 +16,7 @@ public class ServerStatusServiceImpl
     public ServerStatusServiceImpl( String apiKey, String userId )
     {
         super( apiKey, userId );
-    }
+    }                                           
 
     @Override
     public ServerListDocument getAllServersStatus()
