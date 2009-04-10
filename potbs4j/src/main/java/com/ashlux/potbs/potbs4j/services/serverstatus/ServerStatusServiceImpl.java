@@ -2,12 +2,10 @@ package com.ashlux.potbs.potbs4j.services.serverstatus;
 
 import com.ashlux.potbs.potbs4j.exception.PotbsServiceException;
 import com.ashlux.potbs.potbs4j.services.AbstractPotbsService;
-import com.ashlux.potbs4j.vo.ServerListDocument;
 import com.ashlux.potbs4j.vo.ServerDocument;
+import com.ashlux.potbs4j.vo.ServerListDocument;
 
 import java.io.InputStream;
-
-import org.apache.commons.io.IOUtils;
 
 public class ServerStatusServiceImpl
     extends AbstractPotbsService
