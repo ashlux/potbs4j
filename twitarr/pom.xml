@@ -17,5 +17,6 @@
 
   <modules>
     <module>twitarr-web</module>
+    <module>twitarr-twitter</module>
   </modules>  
 </project>
