@@ -4,7 +4,6 @@ import com.ashlux.potbs.twitarr.writer.PotbsWriter;
 import com.ashlux.potbs.twitarr.writer.TwitarrWriterException;
 import com.ashlux.potbs4j.vo.ServerDocument;
 import com.ashlux.potbs4j.vo.ServerStatus;
-import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
