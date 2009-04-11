@@ -11,6 +11,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ashlux.potbs</groupId>
   <artifactId>potbs4j</artifactId>
+  <name>potbs4j</name>
   <version>0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 

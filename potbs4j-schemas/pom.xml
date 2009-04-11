@@ -11,6 +11,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ashlux.potbs</groupId>
   <artifactId>potbs4j-schemas</artifactId>
+  <name>potbs4j xml schemas</name>
   <version>0.1-SNAPSHOT</version>
 
   <build>
@@ -19,11 +20,6 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>xmlbeans-maven-plugin</artifactId>
         <version>2.3.2</version>
-        <configuration>
-          <!--<xmlConfigs>-->
-            <!--<xmlConfig implementation="java.io.File">src/main/xsdconfig/package.xsdconfig</xmlConfig>-->
-          <!--</xmlConfigs>-->
-        </configuration>
       </plugin>
     </plugins>
   </build>
