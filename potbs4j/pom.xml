@@ -12,7 +12,7 @@
   <artifactId>potbs4j</artifactId>
   <name>potbs4j</name>
   <version>0.2-SNAPSHOT</version>
-  <packaging>pom</packaging>
+  <packaging>jar</packaging>
 
   <dependencies>
     <dependency>

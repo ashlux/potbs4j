@@ -12,6 +12,7 @@
   <artifactId>potbs4j-schemas</artifactId>
   <name>potbs4j xml schemas</name>
   <version>0.2-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
   <build>
     <plugins>
