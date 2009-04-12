@@ -4,21 +4,21 @@
   <parent>
     <groupId>com.ashlux.potbs</groupId>
     <artifactId>potbs</artifactId>
-    <version>0.2</version>
+    <version>0.3-SNAPSHOT</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ashlux.potbs</groupId>
   <artifactId>potbs4j</artifactId>
   <name>potbs4j</name>
-  <version>0.2</version>
+  <version>0.3-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <dependencies>
     <dependency>
       <groupId>com.ashlux.potbs</groupId>
       <artifactId>potbs4j-schemas</artifactId>
-      <version>0.2</version>
+      <version>0.3-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
