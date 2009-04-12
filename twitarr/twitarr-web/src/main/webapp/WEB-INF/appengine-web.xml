@@ -1,5 +1,0 @@
-<appengine-web-app xmlns="http://appengine.google.com/ns/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xsi:schemaLocation="http://appengine.google.com/ns/1.0 appengine-web.xsd">
-  <application>ashlux</application>
-  <version>0-1-beta</version>  
-</appengine-web-app>

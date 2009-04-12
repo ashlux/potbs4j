@@ -22,7 +22,6 @@
   <modules>
     <module>potbs4j</module>
     <module>potbs4j-schemas</module>
-    <module>twitarr</module>
   </modules>
 
   <build>
