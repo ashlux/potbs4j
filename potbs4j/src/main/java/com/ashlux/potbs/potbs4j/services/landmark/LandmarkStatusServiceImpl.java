@@ -11,6 +11,8 @@ public class LandmarkStatusServiceImpl
     extends AbstractPotbsService
     implements LandmarkStatusService
 {
+    private static final long MINIMUM_UPDATE_FREQUENCY_IN_MINUTES = 10;
+
     public LandmarkStatusServiceImpl( String apiKey, String userId )
     {
         super( apiKey, userId );
@@ -35,5 +37,11 @@ public class LandmarkStatusServiceImpl
     String getLandmarkStatusUrl( ServerName.Enum serverName )
     {
         return "http://data.burningsea.com/servers/" + serverName + "/landmarks";
+    }
+
+    @Override
+    public long getMinimumUpdateFrequency()
+    {
+        return MINIMUM_UPDATE_FREQUENCY_IN_MINUTES;
     }
 }

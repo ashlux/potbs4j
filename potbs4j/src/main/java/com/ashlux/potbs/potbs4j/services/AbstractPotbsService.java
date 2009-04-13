@@ -13,7 +13,8 @@ import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
-public class AbstractPotbsService
+abstract public class AbstractPotbsService
+    implements PotbsService
 {
     private String apiKey;
 

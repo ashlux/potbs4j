@@ -10,6 +10,8 @@ public class ServerStatusServiceImpl
     extends AbstractPotbsService
     implements ServerStatusService
 {
+    private static final long MINIMUM_UPDATE_FREQUENCY_IN_MINUTES = 10;
+
     private static final String SERVER_STATUS_URL = "http://data.burningsea.com/servers";
 
     public ServerStatusServiceImpl( String apiKey, String userId )
@@ -29,5 +31,11 @@ public class ServerStatusServiceImpl
         throws PotbsServiceException
     {
         return (ServerDocument) executeService( SERVER_STATUS_URL + "/" + serverName );
+    }
+
+    @Override
+    public long getMinimumUpdateFrequency()
+    {
+        return MINIMUM_UPDATE_FREQUENCY_IN_MINUTES;
     }
 }
