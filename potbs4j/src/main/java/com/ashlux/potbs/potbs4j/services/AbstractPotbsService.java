@@ -1,17 +1,15 @@
 package com.ashlux.potbs.potbs4j.services;
 
 import com.ashlux.potbs.potbs4j.exception.PotbsServiceException;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.io.IOUtils;
-import org.apache.xmlbeans.XmlObject;
 import org.apache.xmlbeans.XmlException;
+import org.apache.xmlbeans.XmlObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.LinkedList;
-import java.util.List;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 abstract public class AbstractPotbsService
     implements PotbsService
@@ -29,47 +27,48 @@ abstract public class AbstractPotbsService
     protected XmlObject executeService( final String url )
         throws PotbsServiceException
     {
-        InputStream inputStream = doPost( url );
-        return parse( inputStream );
+        XmlObject xmlObject = doPost( url );
+        System.out.println(xmlObject);
+        return xmlObject;
     }
 
-    private XmlObject parse( InputStream inputStream )
+    private XmlObject doPost( final String urlString )
         throws PotbsServiceException
     {
         String xml = null;
         try
         {
+            URL url = new URL( urlString );
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setDoOutput( true );
+            httpURLConnection.setRequestMethod( "POST" );
+            httpURLConnection.addRequestProperty( "apikey", apiKey );
+            httpURLConnection.addRequestProperty( "userid", userId );
+
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            IOUtils.write( "apikey=" + apiKey, outputStream );
+            IOUtils.write( "&", outputStream );
+            IOUtils.write( "userid=" + userId, outputStream );
+            IOUtils.closeQuietly( outputStream );
+
+            if ( httpURLConnection.getResponseCode() != HttpURLConnection.HTTP_OK )
+            {
+                throw new PotbsServiceException(
+                    "PotBS service returned [" + httpURLConnection.getResponseCode() + "], a non-OK response." );
+            }
+
+            InputStream inputStream = httpURLConnection.getInputStream();
             xml = IOUtils.toString( inputStream );
+            IOUtils.closeQuietly( inputStream );
             return XmlObject.Factory.parse( xml );
+        }
+        catch ( IOException e )
+        {
+            throw new PotbsServiceException( "Error posting o PotBS service.", e );
         }
         catch ( XmlException e )
         {
-            throw new PotbsServiceException( "Could not parse xml=[" + xml + "].", e );
-        }
-        catch ( IOException e )
-        {
-            throw new PotbsServiceException( "Could not read stream from post.", e );
-        }
-
-    }
-
-    private InputStream doPost( final String url )
-        throws PotbsServiceException
-    {
-        try
-        {
-            HttpClient httpClient = new HttpClient();
-            List<NameValuePair> data = new LinkedList<NameValuePair>();
-            data.add( new NameValuePair( "apikey", this.apiKey ) );
-            data.add( new NameValuePair( "userid", this.userId ) );
-            PostMethod postMethod = new PostMethod( url );
-            postMethod.setRequestBody( data.toArray( new NameValuePair[data.size()] ) );
-            httpClient.executeMethod( postMethod );
-            return postMethod.getResponseBodyAsStream();
-        }
-        catch ( IOException e )
-        {
-            throw new PotbsServiceException( "Could not post.", e );
+            throw new PotbsServiceException( "Could not parse PotBS response xml=[" + xml + "].", e);
         }
     }
 }
