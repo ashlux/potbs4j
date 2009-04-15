@@ -4,6 +4,8 @@ import com.ashlux.potbs.potbs4j.exception.PotbsServiceException;
 import org.apache.commons.io.IOUtils;
 import org.apache.xmlbeans.XmlException;
 import org.apache.xmlbeans.XmlObject;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,6 +16,8 @@ import java.net.URL;
 abstract public class AbstractPotbsService
     implements PotbsService
 {
+    final Logger log = LoggerFactory.getLogger( AbstractPotbsService.class );
+
     private String apiKey;
 
     private String userId;
@@ -27,8 +31,8 @@ abstract public class AbstractPotbsService
     protected XmlObject executeService( final String url )
         throws PotbsServiceException
     {
+        log.debug( "Making call to PotBS server using url=[" + url + "]." );
         XmlObject xmlObject = doPost( url );
-        System.out.println(xmlObject);
         return xmlObject;
     }
 
@@ -42,12 +46,12 @@ abstract public class AbstractPotbsService
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setDoOutput( true );
             httpURLConnection.setRequestMethod( "POST" );
-            httpURLConnection.addRequestProperty( "apikey", apiKey );
-            httpURLConnection.addRequestProperty( "userid", userId );
 
             OutputStream outputStream = httpURLConnection.getOutputStream();
+            log.trace( "Setting apikey=[" + apiKey + "]." );
             IOUtils.write( "apikey=" + apiKey, outputStream );
             IOUtils.write( "&", outputStream );
+            log.trace( "Setting apikey=[" + userId + "]." );
             IOUtils.write( "userid=" + userId, outputStream );
             IOUtils.closeQuietly( outputStream );
 
@@ -64,11 +68,11 @@ abstract public class AbstractPotbsService
         }
         catch ( IOException e )
         {
-            throw new PotbsServiceException( "Error posting o PotBS service.", e );
+            throw new PotbsServiceException( "Error sending post for PotBS service.", e );
         }
         catch ( XmlException e )
         {
-            throw new PotbsServiceException( "Could not parse PotBS response xml=[" + xml + "].", e);
+            throw new PotbsServiceException( "Could not parse PotBS response xml=[" + xml + "].", e );
         }
     }
 }
