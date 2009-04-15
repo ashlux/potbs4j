@@ -32,8 +32,7 @@ abstract public class AbstractPotbsService
         throws PotbsServiceException
     {
         log.debug( "Making call to PotBS server using url=[" + url + "]." );
-        XmlObject xmlObject = doPost( url );
-        return xmlObject;
+        return doPost( url );
     }
 
     private XmlObject doPost( final String urlString )
