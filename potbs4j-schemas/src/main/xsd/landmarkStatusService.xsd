@@ -28,7 +28,7 @@
       <xs:attribute name="xPosition" type="xs:double" use="required"/>
       <xs:attribute name="zPosition" type="xs:double" use="required"/>
       <xs:attribute name="conquerable" type="conquerable" use="required"/>
-      <xs:attribute name="portState" type="xs:string" use="required"/>
+      <xs:attribute name="portState" type="portState" use="required"/>
       <xs:attribute name="piratePvPRange" type="xs:double" use="required"/>
       <xs:attribute name="fullPvPRange" type="xs:int" use="required"/>
       <xs:attribute name="englandUnrestPoints" type="xs:int" use="required"/>
@@ -206,6 +206,17 @@
       <xs:enumeration value="VraCrz"/>
       <xs:enumeration value="Whitby"/>
       <xs:enumeration value="WstEnd"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="portState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LM_NORMAL"/>
+      <xs:enumeration value="LM_PIRACY"/>
+      <xs:enumeration value="LM_PVP"/>
+      <xs:enumeration value="LM_CONTENTION"/>
+      <xs:enumeration value="LM_RAIDED"/>
+      <xs:enumeration value="LM_PROTECTED"/>
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
