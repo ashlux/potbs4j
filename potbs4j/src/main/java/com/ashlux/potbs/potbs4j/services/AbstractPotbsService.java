@@ -60,9 +60,14 @@ abstract public class AbstractPotbsService
                     "PotBS service returned [" + httpURLConnection.getResponseCode() + "], a non-OK response." );
             }
 
+
             InputStream inputStream = httpURLConnection.getInputStream();
             xml = IOUtils.toString( inputStream );
             IOUtils.closeQuietly( inputStream );
+            if (log.isTraceEnabled())
+            {
+                log.trace("PotBS service returned [" + xml + "]");
+            }
             return XmlObject.Factory.parse( xml );
         }
         catch ( IOException e )
