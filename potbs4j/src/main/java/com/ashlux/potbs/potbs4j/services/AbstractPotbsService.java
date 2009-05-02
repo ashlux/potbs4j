@@ -50,7 +50,7 @@ abstract public class AbstractPotbsService
             log.trace( "Setting apikey=[" + apiKey + "]." );
             IOUtils.write( "apikey=" + apiKey, outputStream );
             IOUtils.write( "&", outputStream );
-            log.trace( "Setting apikey=[" + userId + "]." );
+            log.trace( "Setting userId=[" + userId + "]." );
             IOUtils.write( "userid=" + userId, outputStream );
             IOUtils.closeQuietly( outputStream );
 
