@@ -5,7 +5,7 @@
 
   <groupId>com.ashlux.potbs</groupId>
   <artifactId>potbs</artifactId>
-  <version>0.4-SNAPSHOT</version>
+  <version>0.4</version>
   <name>potbs</name>
   <packaging>pom</packaging>
 
