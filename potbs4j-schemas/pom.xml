@@ -4,14 +4,14 @@
   <parent>
     <artifactId>potbs</artifactId>
     <groupId>com.ashlux.potbs</groupId>
-    <version>0.5</version>
+    <version>0.5-SNAPSHOT</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ashlux.potbs</groupId>
   <artifactId>potbs4j-schemas</artifactId>
   <name>potbs4j xml schemas</name>
-  <version>0.5</version>
+  <version>0.5-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <build>
